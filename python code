@@ -1,3 +1,4 @@
+#reverse and complement nucleic acid sequences using python programming
 def reverse_complement(sequence: str, seq_type: str = "DNA") -> str:
     """
     Reverse and complement a nucleic acid sequence.
