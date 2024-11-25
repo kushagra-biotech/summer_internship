@@ -1,0 +1,28 @@
+def reverse_complement(sequence: str, seq_type: str = "DNA") -> str:
+    """
+    Reverse and complement a nucleic acid sequence.
+    
+    Args:
+        sequence (str): Input nucleotide sequence (DNA or RNA).
+        seq_type (str): Type of sequence, "DNA" or "RNA". Default is "DNA".
+    
+    Returns:
+        str: Reverse complement of the sequence.
+    """
+    if seq_type not in {"DNA", "RNA"}:
+        raise ValueError("Invalid sequence type. Choose 'DNA' or 'RNA'.")
+    dna_complement = str.maketrans("ACGTacgt", "TGCAtgca")
+    rna_complement = str.maketrans("ACGUacgu", "UGCAugca")
+    complement_map = dna_complement if seq_type == "DNA" else rna_complement
+    reversed_sequence = sequence[::-1]
+    complemented_sequence = reversed_sequence.translate(complement_map)
+    return complemented_sequence
+if __name__ == "__main__":
+    dna_seq = "ATGCGA"
+    rna_seq = "AUGCGA"
+    
+    print("Original DNA:", dna_seq)
+    print("Reverse Complement DNA:", reverse_complement(dna_seq, seq_type="DNA"))
+    
+    print("Original RNA:", rna_seq)
+    print("Reverse Complement RNA:", reverse_complement(rna_seq, seq_type="RNA"))
